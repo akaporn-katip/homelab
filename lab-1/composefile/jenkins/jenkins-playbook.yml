@@ -6,8 +6,9 @@
       ansible.builtin.ping:
 
     - name: Create Jenkins Directory
-      ansible.builtin.command: |
-        mkdir -p ~/jenkins
+      ansible.builtin.shell: |
+        mkdir -p ~/jenkins/jenkins_home 
+        sudo chown -R 1000:1000 ~/jenkins/jenkins_home
 
     - name: Copy Docker Compose file
       ansible.builtin.copy:
@@ -22,12 +23,3 @@
       ansible.builtin.shell:
         chdir: ~/jenkins
         cmd: docker compose up -d
-
-    - name: secrets admin
-      ansible.builtin.command: "docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword"
-      register: secret
-      become: true
-
-    - name: display secret
-      ansible.builtin.debug:
-        msg: "{{ secret.stdout }}"
