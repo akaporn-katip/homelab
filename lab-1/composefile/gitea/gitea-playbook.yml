@@ -1,0 +1,24 @@
+---
+- name: Install Gitea
+  hosts: utilities
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+
+    - name: Create Gitea Directory
+      ansible.builtin.command: |
+        mkdir -p ~/gitea
+
+    - name: Copy Docker Compose file
+      ansible.builtin.copy:
+        src: docker-compose.yml
+        dest: gitea/docker-compose.yml
+
+    - name: Download Image
+      ansible.builtin.shell: |
+        docker pull gitea/gitea:1.21.4
+
+    - name: Start Gitea
+      ansible.builtin.shell:
+        chdir: ~/gitea
+        cmd: docker compose up -d
