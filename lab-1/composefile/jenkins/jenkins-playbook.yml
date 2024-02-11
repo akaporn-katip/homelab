@@ -1,5 +1,5 @@
 ---
-- name: Install JAVA
+- name: Install Jenkins
   hosts: utilities
   tasks:
     - name: Ping my hosts
