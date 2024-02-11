@@ -1,0 +1,33 @@
+---
+- name: Install JAVA
+  hosts: utilities
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+
+    - name: Create Jenkins Directory
+      ansible.builtin.command: |
+        mkdir -p ~/jenkins/jenkins_home
+
+    - name: Copy Docker Compose file
+      ansible.builtin.copy:
+        src: docker-compose.yml
+        dest: jenkins/docker-compose.yml
+
+    - name: Download Image
+      ansible.builtin.shell: |
+        docker pull jenkins/jenkins:2.444-jdk17
+
+    - name: Start Jenkins
+      ansible.builtin.shell:
+        chdir: ~/jenkins
+        cmd: docker compose up -d
+
+    - name: secrets admin
+      ansible.builtin.command: "docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword"
+      register: secret
+      become: true
+
+    - name: display secret
+      ansible.builtin.debug:
+        msg: "{{ secret.stdout }}"
