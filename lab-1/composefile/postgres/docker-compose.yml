@@ -1,6 +1,6 @@
 
 services:
-  postgres-db:
+  devopsdb:
     container_name: devopsdb
     image: postgres:16.1-bullseye
     restart: always
