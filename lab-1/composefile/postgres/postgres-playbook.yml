@@ -1,0 +1,29 @@
+---
+- name: Install POSTGRES
+  hosts: utilities
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+
+    - name: Create Jenkins Directory
+      ansible.builtin.command: |
+        mkdir -p ~/postgres
+
+    - name: Copy Docker Compose file
+      ansible.builtin.copy:
+        src: docker-compose.yml
+        dest: postgres/docker-compose.yml
+
+    - name: Copy Init User Db file
+      ansible.builtin.copy:
+        src: init-user-db.sh
+        dest: postgres/init-user-db.sh
+
+    - name: Download Image
+      ansible.builtin.shell: |
+        docker pull postgres:16.1-bullseye
+    
+    - name: Start Postgres
+      ansible.builtin.shell:
+        chdir: ~/postgres
+        cmd: docker compose up -d

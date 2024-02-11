@@ -1,0 +1,20 @@
+
+services:
+  postgres-db:
+    container_name: devopsdb
+    image: postgres:16.1-bullseye
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: P@ssw0rd
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    networks:
+      - devops-network
+
+networks:
+  devops-network:
+    external: true

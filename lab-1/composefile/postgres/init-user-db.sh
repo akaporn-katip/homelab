@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+	CREATE USER devops WITH PASSWORD 'P@ssw0rd';
+	CREATE DATABASE gitea;
+	CREATE DATABASE sonar;
+	CREATE DATABASE garfana;
+	GRANT ALL PRIVILEGES ON DATABASE gitea TO devops;
+	GRANT ALL PRIVILEGES ON DATABASE sonar TO devops;
+	GRANT ALL PRIVILEGES ON DATABASE garfana TO devops;
+EOSQL
