@@ -1,0 +1,15 @@
+services:
+  nexus:
+    container_name: nexus
+    image: sonatype/nexus3:3.65.0
+    ports:
+      - 8081:8081
+    restart: always
+    volumes:
+      - ./nexus-data:/nexus-data
+    networks:
+      - devops-network
+
+networks:
+  devops-network:
+    external: true

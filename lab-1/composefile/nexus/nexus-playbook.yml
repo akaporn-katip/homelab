@@ -1,0 +1,25 @@
+---
+- name: Install Nexus Repository
+  hosts: utilities
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+
+    - name: Create Jenkins Directory
+      ansible.builtin.shell: |
+        mkdir -p ~/nexus/nexus-data
+        sudo chown -R 200 ~/nexus/nexus-data
+
+    - name: Copy Docker Compose file
+      ansible.builtin.copy:
+        src: docker-compose.yml
+        dest: nexus/docker-compose.yml
+
+    - name: Download Image
+      ansible.builtin.shell: |
+        docker pull sonatype/nexus3:3.65.0
+
+    - name: Start Nexus
+      ansible.builtin.shell:
+        chdir: ~/nexus
+        cmd: docker compose up -d
