@@ -12,17 +12,17 @@
     - name: Copy Docker Compose file
       ansible.builtin.copy:
         src: docker-compose.yml
-        dest: grafana/docker-compose.yml
+        dest: ~/grafana/docker-compose.yml
 
     - name: Copy Datasource file
       ansible.builtin.copy:
         src: ds.yaml
-        dest: grafana/ds.yaml
+        dest: ~/grafana/ds.yaml
 
     - name: Copy Loki Configuration file
       ansible.builtin.copy:
         src: loki-config.yml
-        dest: grafana/loki.yml
+        dest: ~/grafana/loki.yml
           
     - name: Download Image
       ansible.builtin.shell: |

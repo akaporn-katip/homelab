@@ -8,7 +8,15 @@
 
 ### Docker Installation Part
 ```
-ansible -i hosts -u appuser docker-playbook.yaml
+ansible -i hosts -u <your-user> docker-playbook.yaml
 ```
 
+### TO RUN Ansible Playbook In Localhost
+```
+ansible -i hosts -c local -u <your-user> docker-playbook.yaml
+```
 
+### Create devops-network before start running install with composefile 
+```
+docker network create
+```

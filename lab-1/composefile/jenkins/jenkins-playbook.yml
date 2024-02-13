@@ -13,7 +13,7 @@
     - name: Copy Docker Compose file
       ansible.builtin.copy:
         src: docker-compose.yml
-        dest: jenkins/docker-compose.yml
+        dest: ~/jenkins/docker-compose.yml
 
     - name: Download Image
       ansible.builtin.shell: |
