@@ -1,9 +1,9 @@
 services:
   jenkins:
     container_name: jenkins
-    image: jenkins/jenkins:2.444-jdk17
+    image: jenkins:2.444-jdk17
     ports:
-      - 8080:8080
+      - 9001:8080
       - 50000:50000
     restart: always
     volumes:

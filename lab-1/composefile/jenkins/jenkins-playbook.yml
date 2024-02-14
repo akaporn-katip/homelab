@@ -15,9 +15,19 @@
         src: docker-compose.yml
         dest: ~/jenkins/docker-compose.yml
 
+    - name: Copy Docker file
+      ansible.builtin.copy:
+        src: Dockerfile
+        dest: ~/jenkins/Dockerfile
+          
     - name: Download Image
       ansible.builtin.shell: |
         docker pull jenkins/jenkins:2.444-jdk17
+
+    - name: Build Image
+      ansible.builtin.shell:
+        chdir: ~/jenkins
+        cmd: docker build -t jenkins:2.444-jdk17 .
 
     - name: Start Jenkins
       ansible.builtin.shell:
