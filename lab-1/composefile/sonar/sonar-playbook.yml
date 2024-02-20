@@ -1,5 +1,5 @@
 ---
-- name: Install Jenkins
+- name: Install Sonarqube
   hosts: utilities
   tasks:
     - name: Ping my hosts
@@ -7,19 +7,25 @@
 
     - name: Create Jenkins Directory
       ansible.builtin.shell: |
-        mkdir -p ~/jenkins/jenkins_home 
-        sudo chown -R 1000:1000 ~/jenkins/jenkins_home
+        mkdir -p ~/sonar
 
     - name: Copy Docker Compose file
       ansible.builtin.copy:
         src: docker-compose.yml
-        dest: jenkins/docker-compose.yml
+        dest: ~/sonar/docker-compose.yml
+          
+    - name: Copy User Db Init  file
+      ansible.builtin.copy:
+        src: init-user-db.sh
+        dest: ~/sonar/init-user-db.sh
+
 
     - name: Download Image
       ansible.builtin.shell: |
-        docker pull jenkins/jenkins:2.444-jdk17
+        # docker pull sonarqube:9.9.4-community
+        docker pull sonarqube:8.9.10-community
 
-    - name: Start Jenkins
+    - name: Start Sonarqube
       ansible.builtin.shell:
-        chdir: ~/jenkins
+        chdir: ~/sonar
         cmd: docker compose up -d
