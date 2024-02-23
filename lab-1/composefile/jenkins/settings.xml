@@ -1,0 +1,65 @@
+<settings>
+  <mirrors>
+    <mirror>
+      <id>mirror-central</id>
+      <name>mirror central</name>
+      <url>http://nexus.local.katipwork.com/repository/maven-central/</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+    <mirror>
+      <id>mirror-nexus-repository-releases</id>
+      <name>mirror nexus repository releases</name>
+      <url>http://nexus.local.katipwork.com/repository/maven-releases/</url>
+      <mirrorOf>nexus-repository-releases</mirrorOf>
+    </mirror>
+    <mirror>
+      <id>mirror-nexus-repository-central</id>
+      <name>mirror nexus repository central</name>
+      <url>http://nexus.local.katipwork.com/repository/maven-central/</url>
+      <mirrorOf>nexus-repository-central</mirrorOf>
+    </mirror>
+  </mirrors>
+  <repositories>
+    <repository>
+            <id>nexus-repository-releases</id>
+            <name>nexus-repository-releases</name>
+            <url>
+              http://nexus.local.katipwork.com/repository/maven-releases/
+            </url>
+    </repository>
+    <repository>
+            <id>nexus-repository-central</id>
+            <name>nexus-repository-central</name>
+            <url>
+              http://nexus.local.katipwork.com/repository/maven-central/
+            </url>
+    </repository>
+  </repositories>
+  <servers>
+    <server>
+      <id>nexus-repository-releases</id>
+      <username>admin</username>
+      <password>P@ssw0rd</password>
+    </server>
+    <server>
+      <id>nexus-repository-central</id>
+      <username>admin</username>
+      <password>P@ssw0rd</password>
+    </server>
+    <server>
+      <id>mirror-central</id>
+      <username>admin</username>
+      <password>P@ssw0rd</password>
+    </server>
+    <server>
+      <id>mirror-nexus-repository-releases</id>
+      <username>admin</username>
+      <password>P@ssw0rd</password>
+    </server>
+    <server>
+      <id>mirror-nexus-repository-central</id>
+      <username>admin</username>
+      <password>P@ssw0rd</password>
+    </server>
+  </servers>
+</settings>
