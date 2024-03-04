@@ -15,7 +15,7 @@ docker exec -it jenkins tea -- logout <login name>
 ```
 
 config property
-|-------------|----------------------------------------|
-|name         |example                                 |
-|<login name> |jenkins-gitea                           |
-|<gitea token>|9c1b0fe49eb0d92a4b61e5f258a2136cadd08479|
+|name           |example                                 |
+|---------------|----------------------------------------|
+|`<login name>` |jenkins-gitea                           |
+|`<gitea token>`|9c1b0fe49eb0d92a4b61e5f258a2136cadd08479|
